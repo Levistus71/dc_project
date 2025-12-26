@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Logic Simplifier & Verilog Generator</title>
+    <link rel="stylesheet" href="style_1.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Digital Circuits Project</h1>
+        </div>
+
+        <div class="main-content">
+            <!-- Truth Table Section -->
+            <div class="section full-width">
+                <h2>Truth Table Input</h2>
+                <div class="controls">
+                    <label for="var-count">Variables:</label>
+                    <select id="var-count">
+                        <option value="2">2 Variables</option>
+                        <option value="3" selected>3 Variables</option>
+                        <option value="4">4 Variables</option>
+                        <option value="5">5 Variables</option>
+                    </select>
+                </div>
+                <div id="truth-table-container"></div>
+            </div>
+
+            <!-- K-Map Section -->
+            <div class="section">
+                <h2>Karnaugh Map</h2>
+                <div id="kmap-container"></div>
+            </div>
+
+            <!-- Simplified Expression Section -->
+            <div class="section">
+                <h2>Simplified Form</h2>
+                <div class="expression-display">
+                    <h4>Boolean Expression</h4>
+                    <div id="raw-expression">F = 0</div>
+                    <div class="math-display" id="latex-expression">$$F = 0$$</div>
+                </div>
+            </div>
+
+            <!-- Logic Circuit Diagram -->
+            <div class="section full-width">
+                <h2>Logic Circuit Diagram</h2>
+                <div class="circuit-container" id="circuit-container">
+                    <div class="loading">Input values to generate circuit...</div>
+                </div>
+            </div>
+
+            <!-- Verilog Module Section -->
+            <div class="section full-width">
+                <h2>Verilog Module</h2>
+                <div class="code-block" id="verilog-code">// Generate a truth table first</div>
+            </div>
+
+            <!-- Verilog Testbench Section -->
+            <div class="section full-width">
+                <h2>Verilog Testbench</h2>
+                <div class="code-block" id="testbench-code">// Generate a truth table first</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-message" id="status-message"></div>
+
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }
+        };
+    </script>
+    <script src="main_1.js"></script>
+</body>
+</html>
