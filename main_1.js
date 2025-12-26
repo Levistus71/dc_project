@@ -4,7 +4,6 @@ let truthTable = [];
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Digital Logic Simplifier initialized');
     generateTruthTable();
     
     // Add event listener for variable count change
@@ -50,7 +49,7 @@ function generateTruthTable() {
             <select class="output-select" onchange="updateOutput(${i}, this.value)">
                 <option value="0" selected>0</option>
                 <option value="1">1</option>
-                <option value="X">X (Don't Care)</option>
+                <option value="X">Don't Care</option>
             </select>
         </td></tr>`;
         
@@ -1083,5 +1082,3 @@ function drawOrShape(x, y, w, h) {
             Q ${x + w/4},${y + h/2} ${x},${y} Z" 
             class="circuit-gate-body circuit-gate-fill" />`;
 }
-
-console.log('🔹 Digital Logic Simplifier loaded successfully!');
