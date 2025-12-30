@@ -632,7 +632,6 @@ function generateTestbench() {
         codeLines.push("    ");
         
         // Module instantiation
-        codeLines.push("    // Instantiate the circuit under test");
         codeLines.push("    circuit uut(");
         variables.forEach((v, index) => {
             if (index < variables.length - 1) {
@@ -651,10 +650,6 @@ function generateTestbench() {
         
         // Main test sequence
         codeLines.push("    initial begin");
-        codeLines.push("        // Display header");
-        codeLines.push('        $display("==============================================");');
-        codeLines.push('        $display("Digital Logic Circuit Testbench");');
-        codeLines.push('        $display("==============================================");');
         codeLines.push(`        $display("Time\\t${variables.join('\\t')}\\tF");`);
         codeLines.push('        $display("------------------------------");');
         codeLines.push("        ");
@@ -675,39 +670,15 @@ function generateTestbench() {
         codeLines.push("    ");
         
         // Monitor block
-        codeLines.push("    // Optional: Monitor changes");
         codeLines.push("    initial begin");
         codeLines.push(`        $monitor("At time %0t: ${variables.map(v => `${v}=%b`).join(', ')}, F=%b",`);
         codeLines.push(`                 $time, ${variables.join(', ')}, F);`);
         codeLines.push("    end");
         codeLines.push("    ");
         
-        // VCD dump block
-        codeLines.push("    // Generate VCD file for waveform viewing");
-        codeLines.push("    initial begin");
-        codeLines.push('        $dumpfile("circuit_tb.vcd");');
-        codeLines.push("        $dumpvars(0, tb_circuit);");
-        codeLines.push("    end");
-        codeLines.push("    ");
-        
         codeLines.push("endmodule");
         codeLines.push("");
         
-        // Add compilation instructions
-        codeLines.push("/*");
-        codeLines.push(" * Compilation and Simulation Instructions:");
-        codeLines.push(" * ");
-        codeLines.push(" * Using Icarus Verilog:");
-        codeLines.push(" *   iverilog -o circuit_sim circuit.v tb_circuit.v");
-        codeLines.push(" *   vvp circuit_sim");
-        codeLines.push(" * ");
-        codeLines.push(" * For waveform viewing:");
-        codeLines.push(" *   gtkwave circuit_tb.vcd");
-        codeLines.push(" * ");
-        codeLines.push(" * Using ModelSim:");
-        codeLines.push(" *   vlog circuit.v tb_circuit.v");
-        codeLines.push(' *   vsim -c tb_circuit -do "run -all; quit"');
-        codeLines.push(" */");
 
         // Join all lines with newlines
         const testbenchCode = codeLines.join('\n');
